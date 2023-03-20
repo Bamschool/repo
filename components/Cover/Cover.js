@@ -5,9 +5,9 @@ export const Cover = ({ children, background }) => {
       <Image
         alt="Cover"
         src={background}
+        fill
         layout="fill"
-        objectFit="cover"
-        className="mix-blend-soft-light"
+        className="mix-blend-soft-light object-cover"
       />
       <div className="max-w-5xl z-10">{children}</div>
     </div>

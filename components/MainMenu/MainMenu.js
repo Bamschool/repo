@@ -5,7 +5,7 @@ export const MainMenu = ({ items }) => {
   console.log("items", items);
 
   return (
-    <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20s">
+    <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20">
       <div className="py-4 pl-5 flex text-pink-600">
         <FaHouseUser size={30} />
         <FaHeart size={30} />
@@ -17,8 +17,8 @@ export const MainMenu = ({ items }) => {
             className="hover:bg-slate-700 cursor-pointer relative group"
           >
             <div>
-              <Link href={item.destination}>
-                <span className="p-5 block">{item.label}</span>
+              <Link href={item.destination} className="p-5 block">
+                {item.label}
               </Link>
             </div>
           </div>

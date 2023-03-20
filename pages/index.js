@@ -21,43 +21,15 @@ export const getStaticProps = async () => {
         nodeByUri(uri: "/") {
           ... on Page {
             id
-            blocksJSON
-            title
-          }
-        }
-        acfOptionsMainMenu {
-          mainMenu {
-            menuItems {
-              items {
-                label
-                destination {
-                  ... on Page {
-                    uri
-                  }
-                }
-              }
-              menuItem {
-                label
-                destination {
-                  ... on Page {
-                    uri
-                  }
-                }
-                label
-              }
-            }
+            blocks
           }
         }
       }
     `,
   });
-  const blocks = cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
   return {
     props: {
-      mainMenuItems: mapMainMenuItems(
-        data.acfOptionsMainMenu.mainMenu.menuItems
-      ),
-      blocks,
+      blocks: cleanAndTransformBlocks(data.nodeByUri.blocks),
     },
   };
 };

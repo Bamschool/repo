@@ -21,8 +21,7 @@ export const getStaticProps = async (context) => {
         nodeByUri(uri: $uri) {
           ... on Page {
             id
-            blocksJSON
-            title
+            blocks
           }
         }
       }
@@ -53,11 +52,13 @@ export const getStaticPaths = async () => {
     `,
   });
   return {
-    paths: data.pages.nodes.map((page) => ({
-      params: {
-        slug: page.uri.substring(1, page.uri.length - 1).split("/"),
-      },
-    })),
-    fallback: false,
+    paths: data.pages.nodes
+      .filter((page) => page.uri !== "/")
+      .map((page) => ({
+        params: {
+          slug: page.uri.substring(1, page.uri.length - 1).split("/"),
+        },
+      })),
+    fallback: "blocking",
   };
 };
